@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    depends_on:
+    - client
+    - server
+  jenkins:
+    container_name: jenkins
+    image: bobcrutchley/jenkins:latest
+    ports:
+    - target: 8080
+      published: 8080
+      protocol: tcp
+  client:
+    container_name: client
+    image: client:latest
+    build: client
+  server:
+    container_name: server
+    image: server:latest
+    build: server
