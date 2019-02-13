@@ -14,6 +14,7 @@ services:
     depends_on:
     - client
     - server
+    - jenkins
   jenkins:
     container_name: jenkins
     image: bobcrutchley/jenkins:latest
